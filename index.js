@@ -3,17 +3,15 @@ require('@electron/remote/main').initialize()
 const { BrowserWindow } = require('electron')
 var ipc = require('electron').ipcMain;
 var url = require('url')
-var express = require('express');
-const find = require('find-process');
 const util = require('util')
 const { SlippiGame, Ports, DolphinConnection, ConnectionStatus} = require('@slippi/slippi-js')
 const fs = require("fs")
 var path = require('path')
 const WebSocket = require("ws")
 var ping = 1;
+
 var payloadvar;
 var win = null;
-var discord = require('discord-rich-presence')('772286326187229214');
 var lellel;
 var appIcon;
 var contextMenu;
@@ -53,7 +51,7 @@ function createWindow() {
         }
     ])
 
-    appIcon.setToolTip('Slippi Chroma');
+    appIcon.setToolTip('Slippi Stream Tool');
 
     appIcon.setContextMenu(contextMenu);
   appIcon.on('right-click', () => {
@@ -112,7 +110,6 @@ var slpLiveFolderPath = "C:\\Emulation\\Emulatoren\\Slippi Online\\Slippi";
 
 
 const stream = new SlpLiveStream("console");
-const stream2 = new SlpLiveStream("dolphin");
 
 
 
@@ -219,13 +216,6 @@ if (players[0].teamId == players[1].teamId) {
   );
   start = true;
   console.log("START");
-  discord.updatePresence({
-    state: 'In Game',
-    startTimestamp: Date.now() + 2050,
-    largeImageKey: payload.stageId.toString(),
-    largeImageText: stageText(payload.stageId),
-    instance: true,
-  });
 
 });
 realtime.game.end$.subscribe((payload) => {
@@ -262,13 +252,6 @@ realtime.game.end$.subscribe((payload) => {
       payload: payload
     })
   );
-
-  discord.updatePresence({
-    state: 'In Lobby',
-    largeImageKey: "melee",
-    largeImageText: "In Lobby",
-    instance: true,
-  });
   });
 
 realtime.stock.playerDied$.subscribe((payload) => {
@@ -335,18 +318,12 @@ ipc.on('start', (event, lolistgut) => {
   lellel = lolistgut;
   slpLiveFolderPath = lolistgut[2];
   lollol = true;
-        if (lellel[0] == "Relay") {
   realtime.setStream(stream);
     stream.start("localhost", lolistgut[1])
       .then(() => {
         console.log("Successfully connected!");
       })
 
-
-  } else {
-  realtime.setStream(stream2);
-
-  }
 })
 
 stream.connection.on("statusChange", (status) => {
@@ -357,7 +334,6 @@ stream.connection.on("statusChange", (status) => {
           .then(() => {
           })
 }
-discord.disconnect();
 
 sendUpdate(
   JSON.stringify({
@@ -365,44 +341,11 @@ sendUpdate(
     player: null
   })
   );
-} else if (status === ConnectionStatus.CONNECTED) {
-   discord = require('discord-rich-presence')('772286326187229214')
-    console.log("Connected to " + lellel[1]);
-  discord.updatePresence({
-    state: 'In Lobby',
-    largeImageKey: "melee",
-    largeImageText: "In Lobby",
-    instance: true,
-  });
 }
 });
-stream2.connection.on("statusChange", (status) => {
-  if (status === ConnectionStatus.DISCONNECTED) {
-    console.log("Disconnected from Dolphin!");
-discord.disconnect();
-sendUpdate(
-  JSON.stringify({
-    event: "end",
-    player: null
-  })
-  );
-} else if (status === ConnectionStatus.CONNECTED) {
-   discord = require('discord-rich-presence')('772286326187229214')
-    console.log("Connected Dolphin!");
-  discord.updatePresence({
-    state: 'In Lobby',
-    largeImageKey: "melee",
-    largeImageText: "In Lobby",
-    instance: true,
-  });
-}
-});
-ipc.on('end', (event, arg) => {
-stream.stop();
-stream2.stop();
-  discord.disconnect();
-        // ipc.send('connection', 'Not Connected');
+ipc.on('stop', (event, arg) => {
 lollol = false;
+        // ipc.send('connection', 'Not Connected');
 })
 
 //Rest API
@@ -517,7 +460,6 @@ else {
    "options": undefined ,
    "frame": undefined ,
    "gameEnd": undefined ,
-   "slippiTimer": undefined ,
  };
  watch(stream.parser, 'lastFinalizedFrame', function(){
 
@@ -528,12 +470,10 @@ else {
    overlayData.latestFrameIndex = stream.parser.latestFrameIndex;
    overlayData.options = stream.parser.options;
    overlayData.gameEnd = stream.parser.gameEnd;
-   overlayData.slippiTimer = slippiTimer;
    overlayData.frame = stream.parser.frames[stream.parser.latestFrameIndex];
    //fs.writeFileSync('realtime.json', util.inspect(realtime));
    //fs.writeFileSync('stream._events.json', util.inspect(stream2._events));
    sendUpdateOverlay(overlayData);
-     console.log(stream.parser);
  });
  watch(stream.parser, 'gameEnd', function(){
 
@@ -544,38 +484,8 @@ else {
    overlayData.latestFrameIndex = stream.parser.latestFrameIndex;
    overlayData.options = stream.parser.options;
    overlayData.gameEnd = stream.parser.gameEnd;
-   overlayData.slippiTimer = slippiTimer;
    overlayData.frame = stream.parser.frames[stream.parser.latestFrameIndex];
    //fs.writeFileSync('realtime.json', util.inspect(realtime));
-   sendUpdateOverlay(overlayData);
-     console.log(stream.parser);
- });
- watch(stream2.parser, 'lastFinalizedFrame', function(){
- //fs.writeFileSync('realtime.json', util.inspect(realtime));
-
-   overlayData.settings = stream2.parser.settings;
-   overlayData.options = stream2.parser.options;
-   overlayData.lastFinalizedFrame = stream2.parser.lastFinalizedFrame;
-   overlayData.settingsComplete = stream2.parser.settingsComplete;
-   overlayData.latestFrameIndex = stream2.parser.latestFrameIndex;
-   overlayData.options = stream2.parser.options;
-   overlayData.gameEnd = stream2.parser.gameEnd;
-   overlayData.slippiTimer = slippiTimer;
-   overlayData.frame = stream2.parser.frames[stream2.parser.latestFrameIndex];
-   sendUpdateOverlay(overlayData);
- });
- watch(stream2.parser, 'gameEnd', function(){
-
-   overlayData.settings = stream2.parser.settings;
-   overlayData.options = stream2.parser.options;
-   overlayData.lastFinalizedFrame = stream2.parser.lastFinalizedFrame;
-   overlayData.settingsComplete = stream2.parser.settingsComplete;
-   overlayData.latestFrameIndex = stream2.parser.latestFrameIndex;
-   overlayData.options = stream2.parser.options;
-   overlayData.gameEnd = stream2.parser.gameEnd;
-   overlayData.slippiTimer = slippiTimer;
-   overlayData.frame = stream2.parser.frames[stream2.parser.latestFrameIndex];
-   //fs.writeFileSync('stream2._events.slp-raw.json', util.inspect(stream2._events.json()));
    sendUpdateOverlay(overlayData);
  });
  // Variable Changed!
@@ -585,7 +495,6 @@ else {
  });
 
 
- const ubjson = require('@shelacek/ubjson');
 
  const sendUpdateOverlay = (data) => {
    ws2.clients.forEach((client) => {
@@ -600,15 +509,6 @@ else {
    });
  };
 
-var slippiTimer
-
-stream2.on('slp-raw', (streamer) => {
-// slippiRaw = ubjson.decode(streamer.pay)
-//  console.log('Payload:');
-//  console.log(streamer);
-slippiTimer = 480
- // fs.writeFileSync('streamer.json', util.inspect(streamer));
-});
 setInterval(function(){
   if (ping == 1)  {
     ping = 0;
@@ -617,20 +517,3 @@ setInterval(function(){
   }
 
 }, 1000)
-
-setInterval(function() {
- if(lollol){
- find('name', 'Slippi Dolphin', true)
-   .then(function (list) {
-     console.log('there are %s nginx process(es)', list.length);
-     if(list.length >= 1 && stream2.connection.connectionStatus === ConnectionStatus.DISCONNECTED){
-         console.log('Starting DolphinConnection');
-           stream2.start("127.0.0.1", Ports.DEFAULT)
-             .then(() => {
-             })
-     } else if(list.length == 0 && (stream2.connection.connectionStatus === ConnectionStatus.CONNECTED || stream2.connection.connectionStatus === ConnectionStatus.CONNECTING)){
-       stream2.stop();
-     }
-   });
- }
-}, 5000);
