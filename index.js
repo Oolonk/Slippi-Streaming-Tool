@@ -84,11 +84,11 @@ app.commandLine.appendSwitch("disable-renderer-backgrounding");
 app.commandLine.appendSwitch("disable-raf-throttling");
 app.on('ready', createWindow)
 
-/*  setTimeout(function() {
+  setTimeout(function() {
   win.webContents.openDevTools();
   console.log("test")
-  }, 30000);
-  */
+  }, 3000);
+
   /*
 This example script connects to a relay, automatically detects combos,
 and generates a Dolphin-compatible `combos.json` file when disconnected
@@ -325,6 +325,10 @@ ipc.on('start', (event, lolistgut) => {
       })
 
 })
+ipc.on('folder', (event, value) => {
+  slpLiveFolderPath = value;
+})
+
 
 stream.connection.on("statusChange", (status) => {
   if (status === ConnectionStatus.DISCONNECTED) {

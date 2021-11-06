@@ -2,6 +2,8 @@
 var ipc = require('electron').ipcRenderer;
 var fs = require('fs');
 const remote = require('@electron/remote');
+var dialog = remote.require('electron').dialog;
+
 const app = remote.app;
 var foldervar;
 var relay;
@@ -46,16 +48,26 @@ fs.writeFile( app.getPath('userData') + '\\saves\\autohide.txt', checked.toStrin
   }
 
 
+function opendialog(){
+  var value = dialog.showOpenDialog({
+      properties: ['openDirectory']
+  }).then(result => {
+  console.log(result.canceled)
+  console.log(result.filePaths)
+  if (!result.canceled)
+  folder(result.filePaths[0])
+}).catch(err => {
+  console.log(err)
+})
 
+}
      function folder(value){
-       if (value.includes('.')) {
-       value = value.substr(0, value.lastIndexOf("\\"));
-       }
-      foldervar = value;
       document.getElementById("folder").value = value;
+      console.log(value);
      fs.writeFile( app.getPath('userData') + '\\saves\\folder.txt', value, function(err, result) {
      if(err) console.log('error', err);
      });
+     ipc.send('folder', value);
      }
 
     if (!fs.existsSync(app.getPath('userData') + '\\saves\\')){
@@ -81,8 +93,9 @@ fs.writeFile( app.getPath('userData') + '\\saves\\autohide.txt', checked.toStrin
     fs.readFile( app.getPath('userData') + '\\saves\\folder.txt', 'utf8', function (err, data) {
     foldervar = data;
     document.getElementById("folder").value = foldervar;
-    });
 
+    ipc.send('folder', data);
+    });
 
 
 
