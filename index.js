@@ -29,7 +29,7 @@ function createWindow() {
         enableRemoteModule: true,
         backgroundThrottling: false,
         contextIsolation: false,
-        devTools: true
+        devTools: false
       }})
     win.setMenuBarVisibility(false)
     win.loadURL(url.format({
@@ -83,11 +83,6 @@ app.commandLine.appendSwitch("disable-gpu")
 app.commandLine.appendSwitch("disable-renderer-backgrounding");
 app.commandLine.appendSwitch("disable-raf-throttling");
 app.on('ready', createWindow)
-
-  setTimeout(function() {
-  win.webContents.openDevTools();
-  console.log("test")
-  }, 3000);
 
   /*
 This example script connects to a relay, automatically detects combos,
