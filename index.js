@@ -471,8 +471,8 @@ else {
    overlayData.options = stream.parser.options;
    overlayData.gameEnd = stream.parser.gameEnd;
    overlayData.frame = stream.parser.frames[stream.parser.latestFrameIndex];
+   overlayData.combo = realtime.combo.combos;
    //fs.writeFileSync('realtime.json', util.inspect(realtime));
-   //fs.writeFileSync('stream._events.json', util.inspect(stream2._events));
    sendUpdateOverlay(overlayData);
  });
  watch(stream.parser, 'gameEnd', function(){
@@ -485,8 +485,8 @@ else {
    overlayData.options = stream.parser.options;
    overlayData.gameEnd = stream.parser.gameEnd;
    overlayData.frame = stream.parser.frames[stream.parser.latestFrameIndex];
-   //fs.writeFileSync('realtime.json', util.inspect(realtime));
-   sendUpdateOverlay(overlayData);
+   overlayData.combo = realtime.combo.combos;
+   //fs.writeFileSync('realtime.json', util.inspect());
  });
  // Variable Changed!
  const ws2 = new WebSocket.Server({ port: 42070 });
