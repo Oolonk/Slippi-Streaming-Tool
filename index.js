@@ -1,5 +1,6 @@
-const { app, Menu, Tray, electron } = require('electron')
+const { app, Menu, Tray} = require('electron')
 require('@electron/remote/main').initialize()
+const electron = require('electron')
 const { BrowserWindow } = require('electron')
 var ipc = require('electron').ipcMain;
 var url = require('url')
@@ -9,7 +10,7 @@ const fs = require("fs")
 var path = require('path')
 const WebSocket = require("ws")
 var ping = 1;
-
+const dialog = electron.dialog;
 var payloadvar;
 var win = null;
 var lellel;
@@ -516,3 +517,6 @@ setInterval(function(){
   }
 
 }, 1000)
+dialog.showErrorBox = function(title, content) {
+    console.log(`${title}\n${content}`);
+};
