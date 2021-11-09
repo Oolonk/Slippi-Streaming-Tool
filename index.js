@@ -460,6 +460,7 @@ else {
    "options": undefined ,
    "frame": undefined ,
    "gameEnd": undefined ,
+   "lras": undefined,
  };
  watch(stream.parser, 'lastFinalizedFrame', function(){
 
@@ -469,25 +470,35 @@ else {
    overlayData.settingsComplete = stream.parser.settingsComplete;
    overlayData.latestFrameIndex = stream.parser.latestFrameIndex;
    overlayData.options = stream.parser.options;
-   overlayData.gameEnd = stream.parser.gameEnd;
+   overlayData.gameEnd = null;
+   overlayData.lras = null;
    overlayData.frame = stream.parser.frames[stream.parser.latestFrameIndex];
    overlayData.combo = realtime.combo.combos;
-   //fs.writeFileSync('realtime.json', util.inspect(realtime));
+   //fs.writeFileSync('realtime.json', util.inspect(stream.parser));
+   // fs.writeFileSync('json/overlay.json', util.inspect(overlayData));
    sendUpdateOverlay(overlayData);
  });
- watch(stream.parser, 'gameEnd', function(){
+ realtime.game.end$.subscribe((payload) => {
 
-   overlayData.settings = stream.parser.settings;
-   overlayData.options = stream.parser.options;
-   overlayData.lastFinalizedFrame = stream.parser.lastFinalizedFrame;
-   overlayData.settingsComplete = stream.parser.settingsComplete;
-   overlayData.latestFrameIndex = stream.parser.latestFrameIndex;
-   overlayData.options = stream.parser.options;
-   overlayData.gameEnd = stream.parser.gameEnd;
-   overlayData.frame = stream.parser.frames[stream.parser.latestFrameIndex];
-   overlayData.combo = realtime.combo.combos;
-   //fs.writeFileSync('realtime.json', util.inspect());
- });
+
+     overlayData.settings = stream.parser.settings;
+     overlayData.options = stream.parser.options;
+     overlayData.lastFinalizedFrame = stream.parser.lastFinalizedFrame;
+     overlayData.settingsComplete = stream.parser.settingsComplete;
+     overlayData.latestFrameIndex = stream.parser.latestFrameIndex;
+     overlayData.options = stream.parser.options;
+     overlayData.frame = stream.parser.frames[stream.parser.latestFrameIndex];
+     overlayData.combo = realtime.combo.combos;
+     overlayData.gameEnd = payload.gameEndMethod;
+     overlayData.lras = payload.winnerPlayerIndex;
+     //fs.writeFileSync('realtime.json', util.inspect(stream.parser));
+     // fs.writeFileSync('json/game/overlay.json', util.inspect(overlayData));
+
+     sendUpdateOverlay(overlayData);
+   });
+
+
+
  // Variable Changed!
  const ws2 = new WebSocket.Server({ port: 42070 });
  ws2.on("connection", (client) => {
@@ -517,6 +528,8 @@ setInterval(function(){
   }
 
 }, 1000)
+/*
 dialog.showErrorBox = function(title, content) {
     console.log(`${title}\n${content}`);
 };
+*/
