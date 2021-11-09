@@ -17,6 +17,9 @@ var lellel;
 var appIcon;
 var contextMenu;
 var lollol = false;
+
+if (require('electron-squirrel-startup')) return;
+
 function createWindow() {
     win = new BrowserWindow({
       backgroundColor: '#2e2c29',
