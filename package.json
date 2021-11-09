@@ -53,12 +53,17 @@
   "private": true,
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "executableName": "SlippiStreamTool",
+        "icon": "script/icon.ico"
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "SlippiStreamTool"
+            "name": "SlippiStreamTool",
+            "title": "Slippi Stream Tool",
+	          "author": "Jonas Hartmer"
           }
         },
         {
