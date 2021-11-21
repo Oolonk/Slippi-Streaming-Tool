@@ -17,9 +17,9 @@ var lellel;
 var appIcon;
 var contextMenu;
 var lollol = false;
-
+console.log(__dirname)
 if (require('electron-squirrel-startup')) return;
-
+app.disableHardwareAcceleration()
 function createWindow() {
     win = new BrowserWindow({
       backgroundColor: '#2e2c29',
@@ -31,16 +31,15 @@ function createWindow() {
       webPreferences: {
         nodeIntegration: true,
         enableRemoteModule: true,
-        backgroundThrottling: false,
         contextIsolation: false,
-        devTools: false
+        devTools: true
       }})
-    win.setMenuBarVisibility(false)
+    win.setMenuBarVisibility(true)
     win.loadURL(url.format({
-        pathname: path.join( __dirname + '\\index.html'),
+        pathname: path.normalize( __dirname + '/index.html'),
     }))
 
-    appIcon = new Tray( __dirname + '\\script\\icon.ico')
+    appIcon = new Tray( path.normalize(__dirname + '/script/icon.ico'))
     contextMenu = Menu.buildFromTemplate([
         {
             label: 'Show App', click: function () {
@@ -87,13 +86,15 @@ app.commandLine.appendSwitch("disable-gpu")
 app.commandLine.appendSwitch("disable-renderer-backgrounding");
 app.commandLine.appendSwitch("disable-raf-throttling");
 app.on('ready', createWindow)
-
+setTimeout(function() {
+  win.webContents.openDevTools();
+  console.log("test")
+  }, 3000);
   /*
 This example script connects to a relay, automatically detects combos,
 and generates a Dolphin-compatible `combos.json` file when disconnected
 from the relay.
 */
-
 var leftcolor;
 var rightcolor;
 var start = false;
