@@ -18,7 +18,7 @@ var appIcon;
 var contextMenu;
 var lollol = false;
 var ending;
-if (process.platform === "win32";) {
+if (process.platform === "win32") {
   ending = "ico"
 }else {
   ending = "png"
