@@ -17,7 +17,7 @@ var lellel;
 var appIcon;
 var contextMenu;
 var lollol = false;
-console.log(__dirname)
+console.log(path.normalize( __dirname + '/index.html'))
 if (require('electron-squirrel-startup')) return;
 app.disableHardwareAcceleration()
 function createWindow() {
@@ -25,18 +25,21 @@ function createWindow() {
       backgroundColor: '#2e2c29',
       width: 1200,
       height: 700,
-      icon:  __dirname + path.normalize('/script/icon.ico'),
+      icon:   path.normalize(__dirname + '/script/icon.ico'),
       frame: true,
       resizable : false,
       webPreferences: {
         nodeIntegration: true,
         enableRemoteModule: true,
+        backgroundThrottling: false,
         contextIsolation: false,
-        devTools: false
+        devTools: true
       }})
     win.setMenuBarVisibility(false)
     win.loadURL(url.format({
         pathname: path.normalize( __dirname + '/index.html'),
+        protocol: 'file',
+        slashes: true
     }))
 
     appIcon = new Tray( path.normalize(__dirname + '/script/icon.ico'))
@@ -83,15 +86,16 @@ require("@electron/remote/main").enable(win.webContents)
 }
 
 app.commandLine.appendSwitch("disable-gpu")
+app.commandLine.appendSwitch("disable-software-rasterizer");
 app.commandLine.appendSwitch("disable-renderer-backgrounding");
 app.commandLine.appendSwitch("disable-raf-throttling");
 app.on('ready', createWindow)
-/*
+
 setTimeout(function() {
   win.webContents.openDevTools();
   console.log("test")
   }, 3000);
-  */
+
   /*
 This example script connects to a relay, automatically detects combos,
 and generates a Dolphin-compatible `combos.json` file when disconnected

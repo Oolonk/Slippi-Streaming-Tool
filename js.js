@@ -119,7 +119,7 @@ function stop(){
 
 function relaying(value){
   relay = value;
-  fs.writeFile( app.getPath('userData') + '\\saves\\relay.txt', value, function(err, result) {
+  fs.writeFile( path.normalize(app.getPath('userData') + '/saves/relay.txt'), value, function(err, result) {
     if(err) console.log('error', err);
   });
 }
