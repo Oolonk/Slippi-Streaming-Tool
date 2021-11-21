@@ -17,7 +17,13 @@ var lellel;
 var appIcon;
 var contextMenu;
 var lollol = false;
-console.log(path.normalize( __dirname + '/index.html'))
+var ending;
+if (process.platform === "win32";) {
+  ending = "ico"
+}else {
+  ending = "png"
+
+}
 if (require('electron-squirrel-startup')) return;
 app.disableHardwareAcceleration()
 function createWindow() {
@@ -25,7 +31,7 @@ function createWindow() {
       backgroundColor: '#2e2c29',
       width: 1200,
       height: 700,
-      icon:   path.normalize(__dirname + '/script/icon.ico'),
+      icon:   path.normalize(__dirname + '/script/icon.' + ending),
       frame: true,
       resizable : false,
       webPreferences: {
@@ -44,7 +50,7 @@ require("@electron/remote/main").enable(win.webContents)
         slashes: true
     }))
 
-    appIcon = new Tray( path.normalize(__dirname + '/script/icon.ico'))
+    appIcon = new Tray( path.normalize(__dirname + '/script/icon.' + ending))
     contextMenu = Menu.buildFromTemplate([
         {
             label: 'Show App', click: function () {
