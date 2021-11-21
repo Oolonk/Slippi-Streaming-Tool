@@ -35,6 +35,8 @@ function createWindow() {
         contextIsolation: false,
         devTools: true
       }})
+
+require("@electron/remote/main").enable(win.webContents)
     win.setMenuBarVisibility(false)
     win.loadURL(url.format({
         pathname: path.normalize( __dirname + '/index.html'),
@@ -59,7 +61,6 @@ function createWindow() {
 
     appIcon.setToolTip('Slippi Stream Tool');
 
-    appIcon.setContextMenu(contextMenu);
   appIcon.on('right-click', () => {
     appIcon.popUpContextMenu();
   })
@@ -82,7 +83,8 @@ function createWindow() {
               win.hide()
           }
         });
-require("@electron/remote/main").enable(win.webContents)
+
+            appIcon.setContextMenu(contextMenu);
 }
 
 app.commandLine.appendSwitch("disable-gpu")
