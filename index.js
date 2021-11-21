@@ -25,16 +25,16 @@ function createWindow() {
       backgroundColor: '#2e2c29',
       width: 1200,
       height: 700,
-      icon:  __dirname + '\\script\\icon.ico',
+      icon:  __dirname + path.normalize('/script/icon.ico'),
       frame: true,
       resizable : false,
       webPreferences: {
         nodeIntegration: true,
         enableRemoteModule: true,
         contextIsolation: false,
-        devTools: true
+        devTools: false
       }})
-    win.setMenuBarVisibility(true)
+    win.setMenuBarVisibility(false)
     win.loadURL(url.format({
         pathname: path.normalize( __dirname + '/index.html'),
     }))
@@ -73,7 +73,7 @@ function createWindow() {
         win.hide()
     })
 
-        fs.readFile( app.getPath('userData') + '\\saves\\autohide.txt', 'utf8', function (err, data) {
+        fs.readFile( path.normalize(app.getPath('userData') + '/saves/autohide.txt'), 'utf8', function (err, data) {
           if(err) console.log('error', err);
           if (data == "true") {
               win.hide()
@@ -86,10 +86,12 @@ app.commandLine.appendSwitch("disable-gpu")
 app.commandLine.appendSwitch("disable-renderer-backgrounding");
 app.commandLine.appendSwitch("disable-raf-throttling");
 app.on('ready', createWindow)
+/*
 setTimeout(function() {
   win.webContents.openDevTools();
   console.log("test")
   }, 3000);
+  */
   /*
 This example script connects to a relay, automatically detects combos,
 and generates a Dolphin-compatible `combos.json` file when disconnected
@@ -104,7 +106,7 @@ var start = false;
 const { SlpFolderStream, SlpLiveStream, Slpstream, SlpRealTime } = require("@vinceau/slp-realtime");
 
 // TODO: Make sure you set this value!
-var slpLiveFolderPath = "C:\\Emulation\\Emulatoren\\Slippi Online\\Slippi";
+var slpLiveFolderPath = path.normalize(app.getPath('userData'));
 // TODO: Make sure you set these values!
 // Connect to the relay
 
@@ -362,8 +364,8 @@ function getStats(games){
   files = files.sort(function(a, b) {
     var fest;
     var yuio;
-    const gamer = new SlippiGame(slpLiveFolderPath + "\\" +  a.name);
-    const gamet = new SlippiGame(slpLiveFolderPath + "\\" +  b.name);
+    const gamer = new SlippiGame(path.normalize(slpLiveFolderPath + "/" +  a.name));
+    const gamet = new SlippiGame(path.normalize(slpLiveFolderPath + "/" +  b.name));
     if (gamer.getMetadata() == null)
       fest = "1";
     else
@@ -375,7 +377,7 @@ function getStats(games){
       yuio = gamet.getMetadata().startAt;
     return yuio.replace(/\D/g,'') - fest.replace(/\D/g,'');
   })
-  .map(function(v) { return slpLiveFolderPath + "\\" +  v.name; });
+  .map(function(v) { return path.normalize(slpLiveFolderPath + "/" +  v.name); });
 var stats = { stats: [], settings: [], metadata: []};
 
 for (var i = 0; i < parseInt(games, 10); i++) {

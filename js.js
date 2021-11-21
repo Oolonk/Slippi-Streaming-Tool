@@ -1,6 +1,7 @@
 
 var ipc = require('electron').ipcRenderer;
 var fs = require('fs');
+var path = require('path')
 const remote = require('@electron/remote');
 var dialog = remote.require('electron').dialog;
 
@@ -42,7 +43,7 @@ function autostarting(checked){
 }
 
 function autohider(checked){
-fs.writeFile( app.getPath('userData') + '\\saves\\autohide.txt', checked.toString(), function(err, result) {
+fs.writeFile( path.normalize(app.getPath('userData') + '/saves/autohide.txt'), checked.toString(), function(err, result) {
   if(err) console.log('error', err);
   });
   }
@@ -64,25 +65,25 @@ function opendialog(){
      function folder(value){
       document.getElementById("folder").value = value;
       console.log(value);
-     fs.writeFile( app.getPath('userData') + '\\saves\\folder.txt', value, function(err, result) {
+     fs.writeFile( path.normalize(app.getPath('userData') + '/saves/folder.txt'), value, function(err, result) {
      if(err) console.log('error', err);
      });
      ipc.send('folder', value);
      }
 
-    if (!fs.existsSync(app.getPath('userData') + '\\saves\\')){
-        fs.mkdirSync(app.getPath('userData') + '\\saves\\');
+    if (!fs.existsSync(path.normalize(app.getPath('userData') + '/saves/'))){
+        fs.mkdirSync(path.normalize(app.getPath('userData') + '/saves/'));
         console.log("Directory erstellt");
     }
 
 
-    fs.readFile( app.getPath('userData') + '\\saves\\relay.txt', 'utf8', function (err, data) {
+    fs.readFile( path.normalize(app.getPath('userData') + '/saves/relay.txt'), 'utf8', function (err, data) {
       if(err) console.log('error', err);
       relay = parseInt(data);
       document.getElementById("relayPort").value = relay;
     });
 
-    fs.readFile( app.getPath('userData') + '\\saves\\autohide.txt', 'utf8', function (err, data) {
+    fs.readFile( path.normalize(app.getPath('userData') + '/saves/autohide.txt'), 'utf8', function (err, data) {
       if(err) console.log('error', err);
       if (data == "true") {
         document.getElementById("autohide").checked = true;
@@ -90,7 +91,7 @@ function opendialog(){
     });
 
 
-    fs.readFile( app.getPath('userData') + '\\saves\\folder.txt', 'utf8', function (err, data) {
+    fs.readFile( path.normalize(app.getPath('userData') + '/saves/folder.txt'), 'utf8', function (err, data) {
     foldervar = data;
     document.getElementById("folder").value = foldervar;
 
