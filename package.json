@@ -19,8 +19,8 @@
   "build": {
     "appId": "de.oolonk.slippi.stream",
     "productName": "Slippi Stream Tool",
-    "target": "NSIS",
-    "icon": "script/icon.ico",
+    "target": "AppImage",
+    "icon": "script/icon.png",
     "nsis": {
       "allowToChangeInstallationDirectory": true,
       "oneClick": false
@@ -36,7 +36,9 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.61",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.61",
     "@electron-forge/maker-zip": "^6.0.0-beta.61",
-    "electron": "15.3.0"
+    "electron": "^15.3.0",
+    "electron-builder": "^22.14.5",
+    "electron-forge-maker-appimage": "^22.14.7"
   },
   "dependencies": {
     "@electron/remote": "^2.0.1",
@@ -65,6 +67,13 @@
             "title": "Slippi Stream Tool",
             "author": "Jonas Hartmer"
           }
+        },
+        {
+          "name": "electron-forge-maker-appimage",
+          "platforms": [
+            "linux"
+          ],
+          "config": {}
         },
         {
           "name": "@electron-forge/maker-zip",

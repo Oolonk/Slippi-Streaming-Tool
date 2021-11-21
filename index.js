@@ -39,7 +39,7 @@ function createWindow() {
         enableRemoteModule: true,
         backgroundThrottling: false,
         contextIsolation: false,
-        devTools: true
+        devTools: false
       }})
 
 require("@electron/remote/main").enable(win.webContents)
@@ -98,12 +98,12 @@ app.commandLine.appendSwitch("disable-software-rasterizer");
 app.commandLine.appendSwitch("disable-renderer-backgrounding");
 app.commandLine.appendSwitch("disable-raf-throttling");
 app.on('ready', createWindow)
-
+/*
 setTimeout(function() {
   win.webContents.openDevTools();
   console.log("test")
   }, 3000);
-
+*/
   /*
 This example script connects to a relay, automatically detects combos,
 and generates a Dolphin-compatible `combos.json` file when disconnected
