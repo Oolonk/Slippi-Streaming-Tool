@@ -9,6 +9,8 @@
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
+    "make-linux": "electron-forge make --platform linux",
+    "make-windows": "electron-forge make --platform win32",
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\""
   },
@@ -67,13 +69,6 @@
             "title": "Slippi Stream Tool",
             "author": "Jonas Hartmer"
           }
-        },
-        {
-          "name": "electron-forge-maker-appimage",
-          "platforms": [
-            "linux"
-          ],
-          "config": {}
         },
         {
           "name": "@electron-forge/maker-zip",
