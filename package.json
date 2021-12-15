@@ -9,7 +9,7 @@
     "start": "electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "make-linux": "electron-forge make --platform linux",
+    "make-linux": "electron-builder build --linux",
     "make-windows": "electron-forge make --platform win32",
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\""
