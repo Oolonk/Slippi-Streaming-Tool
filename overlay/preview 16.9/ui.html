@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    <link rel="stylesheet" href="script/preview.css">
+    <script type="text/javascript" src="script/jquery.js"></script>
+    <script src="script/jquery-ui.js"></script>
+    <script src="script/cross-slide.js"></script>
+    <script data-main="script/ui.js" src="script/require.js"  src="script/minified.js" src="script/jquery.js"></script>
+    <link rel="stylesheet" href="script/ui.css">
+    <script type="text/javascript" src="script/minified.js"> </script>
+    <title></title>
+  </head>
+  <body style="overflow: hidden !important; width: 1920px; height:1080px; margin-top: 0px;margin-left: 0px;margin-right: 0px;margin-bottom: 0px;">
+  <!-- Timer-->
+<div id="timerdiv">
+  <span id="timerminute"></span><span id="timerms"></span>
+</div>
+<!-- Game End -->
+<div id="gameEnd">
+  <span id="gameEndSpan"></span>
+  <div id="gameEndVertical1" class="gameEndVertical"></div>
+  <div id="gameEndVertical2" class="gameEndVertical"></div>
+</div>
+<!-- Player Stats -->
+<div id="leftoverlay" class="overlaysites">
+  <div id="playeroverlay1" class="overlay">
+    <div id="playerstock1" class="stock">
+      <div id="playerstock11" class="ps1 ps" style="left: 0px;">
+        <img id="playerstock11-color" class="stockcolor stock1 stockcolor1">
+          <img id="playerstock11-black" class="stockblack stock1">
+      </div>
+      <div id="playerstock12" class="ps1 ps" style="left: 36px;">
+        <img id="playerstock11-color" class="stockcolor stock1 stockcolor1">
+          <img id="playerstock11-black" class="stockblack stock1">
+      </div>
+      <div id="playerstock13" class="ps1 ps" style="left: 72px;">
+        <img id="playerstock11-color" class="stockcolor stock1 stockcolor1">
+          <img id="playerstock11-black" class="stockblack stock1">
+      </div>
+      <div id="playerstock14" class="ps1 ps" style="left: 108px;">
+        <img id="playerstock11-color" class="stockcolor stock1 stockcolor1">
+          <img id="playerstock11-black" class="stockblack stock1">
+      </div>
+    </div>
+    <div class="nana" id="nana1">
+      <span id="nanapercentage1" class="nanaperc1"></span><span class="nanapercent nanaperc1">%</span>
+    </div>
+    <div class="black" id="playerblack1">
+      <div id="playercombo1" class="combo"><span id="combo1" class="char1"></span><span  style="vertical-align: 40%;" class="hit char1">HIT</span></div><div id="playerpercentage1" class="percentage"><span id="percentage1" class="perc1"></span><span class="percent perc1">%</span></div>
+    </div>
+    <div id="playercolor1" class="color"></div>
+  </div>
+
+
+    <div id="playeroverlay2" class="overlay">
+      <div id="playerstock2" class="stock">
+        <div id="playerstock21" class="ps2 ps" style="left: 0px;">
+          <img id="playerstock21-color" class="stockcolor stock2 stockcolor2">
+            <img id="playerstock21-black" class="stockblack stock2">
+        </div>
+        <div id="playerstock22" class="ps2 ps" style="left: 36px;">
+          <img id="playerstock22-color" class="stockcolor stock2 stockcolor2">
+            <img id="playerstock22-black" class="stockblack stock2">
+        </div>
+        <div id="playerstock23" class="ps2 ps" style="left: 72px;">
+          <img id="playerstock23-color" class="stockcolor stock2 stockcolor2">
+            <img id="playerstock23-black" class="stockblack stock2">
+        </div>
+        <div id="playerstock24" class="ps2 ps" style="left: 108px;">
+          <img id="playerstock24-color" class="stockcolor stock2 stockcolor2">
+            <img id="playerstock24-black" class="stockblack stock2">
+        </div>
+      </div>
+      <div class="nana" id="nana2">
+        <span id="nanapercentage2" class="nanaperc2"></span><span class="nanapercent nanaperc2">%</span>
+      </div>
+      <div class="black" id="playerblack2">
+        <div id="playercombo2" class="combo"><span id="combo2" class="char2"></span><span  style="vertical-align: 40%;" class="hit char2">HIT</span></div><div id="playerpercentage2" class="percentage"><span id="percentage2" class="perc2"></span><span class="percent perc2">%</span></div>
+      </div>
+      <div id="playercolor2" class="color"></div>
+    </div>
+</div>
+
+
+
+<div id="rightoverlay" class="overlaysites">
+  <div id="playeroverlay3" class="overlay">
+    <div id="playerstock3" class="stock">
+      <div id="playerstock31" class="ps3 ps" style="right: 0px;">
+        <img id="playerstock31-color" class="stockcolor stock3 stockcolor3">
+          <img id="playerstock31-black" class="stockblack stock3">
+      </div>
+      <div id="playerstock32" class="ps3 ps" style="right: 36px;">
+        <img id="playerstock33-color" class="stockcolor stock3 stockcolor3">
+          <img id="playerstock33-black" class="stockblack stock3">
+      </div>
+      <div id="playerstock33" class="ps3 ps" style="right: 72px;">
+        <img id="playerstock33-color" class="stockcolor stock3 stockcolor3">
+          <img id="playerstock33-black" class="stockblack stock3">
+      </div>
+      <div id="playerstock34" class="ps3 ps" style="right: 108px;">
+        <img id="playerstock33-color" class="stockcolor stock3 stockcolor3">
+          <img id="playerstock33-black" class="stockblack stock3">
+      </div>
+    </div>
+    <div class="nana" id="nana3">
+      <span id="nanapercentage3" class="nanaperc3"></span><span class="nanapercent nanaperc3">%</span>
+    </div>
+    <div class="black" id="playerblack3">
+      <div id="playercombo3" class="combo"><span id="combo3" class="char3"></span><span  style="vertical-align: 40%;" class="hit char3">HIT</span></div><div id="playerpercentage3" class="percentage"><span id="percentage3" class="perc3"></span><span class="percent perc3">%</span></div>
+    </div>
+    <div id="playercolor3" class="color"></div>
+  </div>
+
+
+    <div id="playeroverlay4" class="overlay">
+      <div id="playerstock4" class="stock">
+        <div id="playerstock41" class="ps4 ps" style="right: 0px;">
+          <img id="playerstock41-color" class="stockcolor stock4 stockcolor4">
+            <img id="playerstock41-black" class="stockblack stock4">
+        </div>
+        <div id="playerstock42" class="ps4 ps" style="right: 36px;">
+          <img id="playerstock44-color" class="stockcolor stock4 stockcolor4">
+            <img id="playerstock44-black" class="stockblack stock4">
+        </div>
+        <div id="playerstock43" class="ps4 ps" style="right: 72px;">
+          <img id="playerstock44-color" class="stockcolor stock4 stockcolor4">
+            <img id="playerstock44-black" class="stockblack stock4">
+        </div>
+        <div id="playerstock44" class="ps4 ps" style="right: 108px;">
+          <img id="playerstock44-color" class="stockcolor stock4 stockcolor4">
+            <img id="playerstock44-black" class="stockblack stock4">
+        </div>
+      </div>
+      <div class="nana" id="nana4">
+        <span id="nanapercentage4" class="nanaperc4"></span><span class="nanapercent nanaperc4">%</span>
+      </div>
+      <div class="black" id="playerblack4">
+        <div id="playercombo4" class="combo"><span id="combo4" class="char4"></span><span  style="vertical-align: 40%;" class="hit char4">HIT</span></div><div id="playerpercentage4" class="percentage"><span id="percentage4" class="perc4"></span><span class="percent perc4">%</span></div>
+      </div>
+      <div id="playercolor4" class="color"></div>
+    </div>
+</div>
+
+  </body>
+</html>

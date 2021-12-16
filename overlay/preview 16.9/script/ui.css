@@ -1,0 +1,374 @@
+html *{
+ font-family: Ssbufont;
+ color: #ffffff;
+ text-shadow: 1px 1px 0 #000,
+              -1px 1px 0 #000,
+              1px -1px 0 #000,
+              -1px -1px 0 #000,
+              0px 1px 0 #000,
+              0px -1px 0 #000,
+              -1px 0px 0 #000,
+              1px 0px 0 #000,
+              2px 2px 0 #000,
+              -2px 2px 0 #000,
+              2px -2px 0 #000,
+              -2px -2px 0 #000,
+              0px 2px 0 #000,
+              0px -2px 0 #000,
+              -2px 0px 0 #000,
+              2px 0px 0 #000,
+              1px 2px 0 #000,
+              -1px 2px 0 #000,
+              1px -2px 0 #000,
+              -1px -2px 0 #000,
+              2px 1px 0 #000,
+              -2px 1px 0 #000,
+              2px -1px 0 #000,
+              -2px -1px 0 #000;
+}
+html{
+  overflow: hidden;
+}
+#timerdiv{
+  width: 224px;
+  height: 40px;
+  left: 848px;
+  top: 0px;
+  position: absolute;
+  text-align: center;
+  vertical-align: bottom;
+  line-height: 40px;
+}
+#timerminute{
+font-size: 40px;
+bottom: 2px;
+}
+#timerms{
+font-size: 25px;
+bottom: 2px;
+}
+.overlay{
+  width: 275px;
+  height: 88px;
+  position: absolute;
+  display: block;
+}
+.black{
+  width: 275px;
+  height: 50px;
+  bottom: 2px;
+  left: 0px;
+  line-height: 50px;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+}
+.color{
+  width: 275px;
+  height: 2px;
+  bottom: 0px;
+  position: absolute;
+}
+#leftoverlay1{
+left: 0px;
+}
+#leftoverlay2{
+left: 0px;
+}
+#playercolor3{
+right: 0px;
+}
+#playercolor4{
+right: 0px;
+
+}
+.overlaysites{
+  bottom: 60px;
+  width: 590px;
+  height: 88px;
+  position: absolute;
+}
+#leftoverlay{
+  left: 311px;
+}
+#rightoverlay{
+  right: 311px;
+}
+.combo{
+font-size: 50px;
+bottom: 0px;
+position: absolute;
+  line-height: 50px;
+}
+.hit{
+font-size: 20px;
+bottom: 0px;
+  line-height: 25px;
+  vertical-align: center;
+}
+.percent{
+font-size: 25px;
+bottom: 0px;
+  line-height: 25px;
+  vertical-align: center;
+}
+
+.percentage{
+font-size: 50px;
+bottom: 0px;
+  line-height: 50px;
+  vertical-align: center;
+  text-shadow: 1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000, 0px 1px 0 #000, 0px -1px 0 #000, -1px 0px 0 #000, 1px 0px 0 #000, 2px 2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000, -2px -2px 0 #000, 0px 2px 0 #000, 0px -2px 0 #000, -2px 0px 0 #000, 2px 0px 0 #000, 1px 2px 0 #000, -1px 2px 0 #000, 1px -2px 0 #000, -1px -2px 0 #000, 2px 1px 0 #000, -2px 1px 0 #000, 2px -1px 0 #000, -2px -1px 0 #000;
+}
+.nana{
+font-size: 30px;
+top: 0px;
+  line-height: 30px;
+  vertical-align: center;
+  position: absolute;
+}
+.nanapercent{
+font-size: 15px;
+bottom: 0px;
+  line-height: 25px;
+  vertical-align: center;
+}
+#nana1{
+  opacity: 0;
+  right:26px;
+  position: absolute;
+}
+#nana2{
+  opacity: 0;
+  right:26px;
+  position: absolute;
+}
+#nana3{
+  opacity: 0;
+  right:171.89px;
+  position: absolute;
+}
+
+#nana4{
+  opacity: 0;
+  right:171.89px;
+  position: absolute;
+}
+
+#playerpercentage1{
+  opacity: 0;
+  right:2px;
+  position: absolute;
+}
+#playerpercentage2{
+  opacity: 0;
+  right:2px;
+  position: absolute;
+}
+#playerpercentage3{
+  opacity: 0;
+  right:144.5px;
+  position: absolute;
+}
+
+#playerpercentage4{
+  opacity: 0;
+  right:144.5px;
+  position: absolute;
+}
+#playercombo4{
+  right:2px;
+  position: absolute;
+}
+#playercombo3{
+  right:2px;
+  position: absolute;
+}
+#playercombo2{
+  left:2px;
+  position: absolute;
+}
+
+#playercombo1{
+  left:2px;
+  position: absolute;
+}
+
+#playeroverlay1{
+  left:0px;
+  opacity: 0;
+  position: absolute;
+}
+#playeroverlay2{
+  right:0px;
+  opacity: 0;
+  position: absolute;
+}
+#playeroverlay3{
+  left:0px;
+  opacity: 0;
+  position: absolute;
+}
+#playeroverlay4{
+  right:0px;
+  opacity: 0;
+  position: absolute;
+}
+.stockblack{
+  filter: brightness(0%);
+  bottom:0px;
+  right:0px;
+  position: absolute;
+  z-index: 1;
+}
+.stock{
+  width:144px;
+  height:36px;
+  position: absolute;
+  top:0px;
+}
+#playerstock1{
+  left:0px;
+}
+#playerstock2{
+  left:0px;
+}
+#playerstock3{
+  right:0px;
+}
+#playerstock4{
+  right:0px;
+}
+.stockcolor{
+  top:0px;
+  left:0px;
+  position: absolute;
+  z-index: 2;
+}
+img{
+  width:33px;
+  height:33px;
+}
+.ps{
+  width:36px;
+  opacity: 0;
+  height:36px;
+  top:0px;
+  position: absolute;
+}
+#gameEnd{
+color: #ffffff;
+font-size: 250px;
+  margin: 0 auto;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  vertical-align: center;
+  opacity: 0;
+  vertical-align: middle;
+  text-align: center;
+  line-height: 100vh;
+
+    text-transform: uppercase;
+}
+#gameEndSpan{
+
+  text-shadow: -4px -4px 0 #000,
+               -4px -3px 0 #000,
+               -4px -2px 0 #000,
+               -4px -1px 0 #000,
+               -4px 0px 0 #000,
+               -4px 1px 0 #000,
+               -4px 2px 0 #000,
+               -4px 3px 0 #000,
+               -4px 4px 0 #000,
+               -3px -4px 0 #000,
+               -3px -3px 0 #000,
+               -3px -2px 0 #000,
+               -3px -1px 0 #000,
+               -3px 0px 0 #000,
+               -3px 1px 0 #000,
+               -3px 2px 0 #000,
+               -3px 3px 0 #000,
+               -3px 4px 0 #000,
+               -2px -4px 0 #000,
+               -2px -3px 0 #000,
+               -2px -2px 0 #000,
+               -2px -1px 0 #000,
+               -2px 0px 0 #000,
+               -2px 1px 0 #000,
+               -2px 2px 0 #000,
+               -2px 3px 0 #000,
+               -2px 4px 0 #000,
+               -1px -4px 0 #000,
+               -1px -3px 0 #000,
+               -1px -2px 0 #000,
+               -1px -1px 0 #000,
+               -1px 0px 0 #000,
+               -1px 1px 0 #000,
+               -1px 2px 0 #000,
+               -1px 3px 0 #000,
+               -1px 4px 0 #000,
+               -0px -4px 0 #000,
+               -0px -3px 0 #000,
+               -0px -2px 0 #000,
+               -0px -1px 0 #000,
+               -0px 0px 0 #000,
+               -0px 1px 0 #000,
+               -0px 2px 0 #000,
+               -0px 3px 0 #000,
+               -0px 4px 0 #000,
+               -4px -4px 0 #000,
+              4px -3px 0 #000,
+              4px -2px 0 #000,
+              4px -1px 0 #000,
+              4px 0px 0 #000,
+              4px 1px 0 #000,
+              4px 2px 0 #000,
+              4px 3px 0 #000,
+              4px 4px 0 #000,
+              3px -4px 0 #000,
+              3px -3px 0 #000,
+              3px -2px 0 #000,
+              3px -1px 0 #000,
+              3px 0px 0 #000,
+              3px 1px 0 #000,
+              3px 2px 0 #000,
+              3px 3px 0 #000,
+              3px 4px 0 #000,
+              2px -4px 0 #000,
+              2px -3px 0 #000,
+              2px -2px 0 #000,
+              2px -1px 0 #000,
+              2px 0px 0 #000,
+              2px 1px 0 #000,
+              2px 2px 0 #000,
+              2px 3px 0 #000,
+              2px 4px 0 #000,
+              1px -4px 0 #000,
+              1px -3px 0 #000,
+              1px -2px 0 #000,
+              1px -1px 0 #000,
+              1px 0px 0 #000,
+              1px 1px 0 #000,
+              1px 2px 0 #000,
+              1px 3px 0 #000,
+              1px 4px 0 #000;
+}
+.gameEndVertical{
+  height: 2px;
+  width: 0px;
+  position: absolute;
+  background-color: white;
+}
+#gameEndVertical1{
+  left: 282px;
+  top: 359px;
+  position: absolute;
+}
+#gameEndVertical2{
+  right: 282px;
+  bottom: 359px;
+  position: absolute;
+}

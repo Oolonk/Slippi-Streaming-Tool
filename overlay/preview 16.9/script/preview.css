@@ -1,0 +1,794 @@
+
+html *{
+ font-family: Ssbufont;
+ color: #ffffff;
+ text-shadow: 1px 1px 0 #000,
+              -1px 1px 0 #000,
+              1px -1px 0 #000,
+              -1px -1px 0 #000,
+              0px 1px 0 #000,
+              0px -1px 0 #000,
+              -1px 0px 0 #000,
+              1px 0px 0 #000,
+              2px 2px 0 #000,
+              -2px 2px 0 #000,
+              2px -2px 0 #000,
+              -2px -2px 0 #000,
+              0px 2px 0 #000,
+              0px -2px 0 #000,
+              -2px 0px 0 #000,
+              2px 0px 0 #000,
+              1px 2px 0 #000,
+              -1px 2px 0 #000,
+              1px -2px 0 #000,
+              -1px -2px 0 #000,
+              2px 1px 0 #000,
+              -2px 1px 0 #000,
+              2px -1px 0 #000,
+              -2px -1px 0 #000;
+
+}
+
+@font-face {
+    font-family: startrek;
+    src: url(tng.ttf);
+}
+
+
+@font-face {
+    font-family: audiowide;
+    src: url(Audiowide.ttf);
+}
+
+@font-face {
+    font-family: Ssbufont;
+    font-weight: normal;
+    src: url(ssbufont.otf) format("opentype");
+}
+
+@font-face {
+    font-family: Extravaganzza;
+    src: url(roboto.otf)  format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+  #p1char {
+    z-index: 1;
+    width: 326px;
+    height: 40px;
+    left: 480px;
+    top: 40px;
+    position: absolute;
+    text-align: right;
+    overflow: hidden;
+  }
+  #p2char {
+    z-index: 1;
+    width: 326px;
+    height: 40px;
+    right: 480px;
+    top: 40px;
+    position: absolute;
+    overflow: hidden;
+  }
+    #t1p2char {
+      z-index: 1;
+      width: 326px;
+      height: 40px;
+      left: 480px;
+      top: 40px;
+      position: absolute;
+      text-align: right;
+      overflow: hidden;
+    }
+    #t2p2char {
+      z-index: 1;
+      width: 326px;
+      height: 40px;
+      right: 480px;
+      top: 40px;
+      position: absolute;
+      overflow: hidden;
+    }
+      #t1p1char {
+        z-index: 1;
+        width: 326px;
+        height: 40px;
+        left: 482px;
+        top: 0px;
+        position: absolute;
+        text-align: right;
+        overflow: hidden;
+      }
+      #t2p1char {
+        z-index: 1;
+        width: 326px;
+        height: 40px;
+        right: 482px;
+        top: 0px;
+        position: absolute;
+        overflow: hidden;
+      }
+  #tebg {
+    top: -57px;
+    position: absolute;
+    overflow: hidden;
+  }
+  #phase {
+    z-index: 1;
+    width: 414px;
+    height: 57px;
+    left: 1128px;
+    top: 94px;
+    position: absolute;
+    overflow: hidden;
+  }
+  #phasebg {
+    top: -57px;
+    position: absolute;
+    overflow: hidden;
+  }
+  .name{
+     font-size:24px;
+     opacity: 1;
+     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+     z-index: 15;
+     vertical-align: middle;
+     line-height: 40px;
+     width:326px;
+     height:40px;
+     position: absolute;
+     white-space: nowrap;
+  }
+  .name2{
+     font-size:24px;
+     opacity: 1;
+     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+     z-index: 15;
+     vertical-align: middle;
+     line-height: 40px;
+     width:326px;
+     height:40px;
+     position: absolute;
+     white-space: nowrap;
+
+  }
+  #p1line{
+     text-align: center;
+     font-size:30px;
+     left: -326px;
+     text-transform: uppercase;
+
+  }
+  #p3line{
+     text-align: center;
+     left: -326px;
+     font-size:30px;
+     opacity: 0;
+
+  }
+  #p2line{
+     text-align: center;
+     right: -326px;
+     font-size:30px;
+     text-transform: uppercase;
+
+  }
+  #p4line{
+     text-align: center;
+     right: -326px;
+     font-size:30px;
+     opacity: 0;
+
+  }
+  #t1p1line{
+     text-align: center;
+     font-size:30px;
+     left: -326px;
+     text-transform: uppercase;
+
+  }
+  #t1p3line{
+     text-align: center;
+     left: -326px;
+     font-size:30px;
+     opacity: 0;
+
+  }
+  #t2p2line{
+     text-align: center;
+     right: -326px;
+     font-size:30px;
+     text-transform: uppercase;
+
+  }
+  #t2p4line{
+     text-align: center;
+     right: -326px;
+     font-size:30px;
+     opacity: 0;
+
+  }
+  #p1country{
+    top: 2px;
+    left: 55px;
+  }
+  #p2country{
+    top: 2px;
+    left: 7px;
+  }
+  .content{
+    position: relative;
+    width: auto;
+  }
+
+  .information{
+    text-align: center;
+    top: -57px;
+    color: #ffffff;
+    left: 56px;
+    width:302px;
+    height:49px;
+    font-size:25px;
+    opacity: 1;
+    z-index: 6;
+    vertical-align:
+    middle;
+    line-height: 49px;
+    position: absolute;
+
+}
+
+.country{
+  opacity: 0;
+  z-index: -1;
+  width: 565px;
+  height: 81px;
+  top: 2px;
+  position: absolute;
+}
+#p1country{
+  top: 2px;
+  left: 55px;
+}
+#p2country{
+  top: 2px;
+  left: 7px;
+}
+#p1color{
+  left: 75px;
+  top: -42px;
+  z-index: 20;
+  width: 454px;
+  height: 42px;
+  position: absolute;
+}
+#p2color{
+  z-index: 20;
+  top: -42px;
+  left: 763px;
+  width: 454px;
+  height: 42px;
+  position: absolute;
+}
+.character{
+  opacity: 0;
+  top: 48px;
+  z-index: 20;
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background-size: cover;
+}
+#p1character{
+  left: 448px;
+}
+#p2character{
+  right: 448px;
+}
+#t1p2character{
+  left: 448px;
+}
+#t2p2character{
+  right: 448px;
+}
+#t1p1character{
+  top: 8px;
+  left: 816px;
+}
+#t2p1character{
+  top: 8px;
+  right: 816px;
+}
+.score{
+  opacity: 0;
+  z-index: 99;
+  width: 563px;
+  height: 4px;
+  position: absolute;
+}
+#player1score{
+  left: 387px;
+  top: 87px;
+  position: absolute;
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  z-index: 30;
+}
+
+#player2score{
+  z-index: 30;
+  left: 970px;
+  top: 87px;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  position: absolute;
+}
+.grandfinal{
+ left: 736px;
+ top: 94px;
+ width: 448px;
+ height: 57px;
+ position: absolute;
+  overflow: hidden;
+}
+#player1grandfinal{
+  z-index: 30;
+  left: 0px;
+  top: -57px;
+  position: absolute;
+
+}
+#player2grandfinal{
+  z-index: 30;
+  right: 0px;
+  top: -57px;
+  position: absolute;
+
+}
+#bottombar{
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 30;
+  bottom: -18px;
+  left: 0px;
+  line-height: 36px;
+  width: 1920px;
+  height: 18px;
+  position: absolute;
+   overflow: hidden;
+   font-size: 15px;
+   text-transform: uppercase;
+}
+#bottombarp1{
+  opacity: 0;
+  z-index: 30;
+  bottom: 18px;
+  left: 0px;
+  width: 960px;
+  height: 2px;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  overflow: hidden;
+}
+#bottombarp2{
+  opacity: 0;
+  z-index: 30;
+  bottom: 18px;
+  right: 0px;
+  width: 960px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 1);
+  position: absolute;
+  overflow: hidden;
+}
+#commentators{
+  z-index: 99;
+  top: 0px;
+  width: 1920px;
+  vertical-align: top;
+  height: 18px;
+  margin-top: -9px;
+  text-align: center;
+  color: #e0e0e0;
+  position: absolute;
+}
+#time{
+  z-index: 99;
+  top: 0px;
+  width: 1920px;
+  vertical-align: top;
+  margin-top: -9px;
+  text-align: right;
+  color: #e0e0e0;
+  font-size: 15px;
+  position: absolute;
+}
+#state{
+  z-index: 99;
+  top: 0px;
+  width: 1920px;
+  vertical-align: top;
+  height: 18px;
+  margin-top: -9px;
+  text-align: left;
+  color: #e0e0e0;
+  position: absolute;
+}
+.camera{
+  z-index: 30;
+  opacity: 0;
+  position: absolute;
+  top: 847px
+}
+#player1camera{
+  left: 0px;
+}
+#player2camera{
+  left: 1539px;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+.links{
+  z-index: 99;
+  width: auto;
+  vertical-align: middle;
+  line-height: 30px;
+  font-size: 22px;
+}
+#social_media{
+opacity: 0;
+}
+#tournament{
+  opacity: 0;
+  width: 1920px;
+  height: 40px;
+  left: 0px;
+  top: 80px;
+  z-index: 33;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 30px;
+  line-height: 40px;
+  position: absolute;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+#tournamentspan{
+  font-size: 35px;
+}
+#phase_bo{
+  opacity: 0;
+  width: 224px;
+  height: 40px;
+  left: 848px;
+  top: 40px;
+  z-index: 99;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 20px;
+  line-height: 20px;
+  position: absolute;
+  white-space: nowrap;
+  text-transform: uppercase;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+#tournamentname{
+  text-shadow: 1px 1px 0 #000,
+     -1px 1px 0 #000,
+     1px -1px 0 #000,
+     -1px -1px 0 #000,
+     0px 1px 0 #000,
+     0px -1px 0 #000,
+     -1px 0px 0 #000,
+     1px 0px 0 #000,
+     2px 2px 0 #000,
+     -2px 2px 0 #000,
+     2px -2px 0 #000,
+     -2px -2px 0 #000,
+     0px 2px 0 #000,
+     0px -2px 0 #000,
+     -2px 0px 0 #000,
+     2px 0px 0 #000,
+     1px 2px 0 #000,
+     -1px 2px 0 #000,
+     1px -2px 0 #000,
+     -1px -2px 0 #000,
+     2px 1px 0 #000,
+     -2px 1px 0 #000,
+     2px -1px 0 #000,
+     -2px -1px 0 #000;
+}
+#tournament2name{
+  text-shadow: 1px 1px 0 #000,
+     -1px 1px 0 #000,
+     1px -1px 0 #000,
+     -1px -1px 0 #000,
+     0px 1px 0 #000,
+     0px -1px 0 #000,
+     -1px 0px 0 #000,
+     1px 0px 0 #000,
+     2px 2px 0 #000,
+     -2px 2px 0 #000,
+     2px -2px 0 #000,
+     -2px -2px 0 #000,
+     0px 2px 0 #000,
+     0px -2px 0 #000,
+     -2px 0px 0 #000,
+     2px 0px 0 #000,
+     1px 2px 0 #000,
+     -1px 2px 0 #000,
+     1px -2px 0 #000,
+     -1px -2px 0 #000,
+     2px 1px 0 #000,
+     -2px 1px 0 #000,
+     2px -1px 0 #000,
+     -2px -1px 0 #000;
+}
+#p1score {
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  overflow: hidden;
+  font-size: 24px;
+  text-align: center;
+  line-height: 40px;
+  vertical-align: middle;
+  opacity: 0;
+}
+#p2score {
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  right: 0px;
+  top: 0px;
+  position: absolute;
+  overflow: hidden;
+  font-size: 24px;
+  line-height: 40px;
+  text-align: center;
+  vertical-align: middle;
+  opacity: 0;
+}
+#score{
+  z-index: 20;
+  top: 40px;
+  left: 808px;
+  width: 304px;
+  height: 40px;
+  position: absolute;
+  overflow: hidden;
+}
+#p1grandfinal{
+  z-index: 20;
+  top: 0px;
+  left: 33px;
+  width: 42px;
+  height: 42px;
+  position: absolute;
+  overflow: hidden;
+}
+#p2grandfinal{
+  z-index: 20;
+  top: 0px;
+  left: 1217px;
+  width: 42px;
+  height: 42px;
+  position: absolute;
+  overflow: hidden;
+}
+.teamplayers{
+  width: 300px;
+  height: 36px;
+  left: 0px;
+    position: absolute;
+    white-space: nowrap;
+
+    line-height: 36px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.teamplayers1{
+border-color: rgba(0, 0, 0, 1);
+  border-width: 2px;
+  border-style: solid;
+
+}
+.teamplayers2{
+border-color: rgba(0, 0, 0, 1);
+  border-width: 2px;
+  border-style: solid;
+
+}
+#t1{
+  font-size: 23px;
+    line-height: 36px;
+}
+#t2{
+  font-size: 23px;
+    line-height: 36px;
+}
+.team1image{
+  left: 0px;
+  top: 0px;
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  opacity: 1;
+    filter: brightness(0.8) blur(1px);
+    overflow: hidden;
+}
+.team2image{
+  right: 0px;
+  top: 0px;
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  opacity: 1;
+    filter: brightness(0.8) blur(1px);
+}
+
+.team1char{
+  left: 6px;
+  top: 6px;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  opacity: 1;
+}
+.team2char{
+  right: 6px;
+  top: 6px;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  opacity: 1;
+}
+.team1sponsor{
+  right: 0px;
+  top: 0px;
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  opacity: 1;
+    background-size: cover;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+.team2sponsor{
+  left: 0px;
+  top: 0px;
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  opacity: 1;
+    background-size: cover;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+#p1teamlogo{
+  height: 40px;
+  width: 40px;
+  top: 0px;
+  left: 808px;
+  position: absolute;
+  background-size: cover;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  z-index: 39;
+  opacity: 0;
+}
+#p2teamlogo{
+  height: 40px;
+  width: 40px;
+  top: 0px;
+  right: 808px;
+  position: absolute;
+  background-size: cover;
+  -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-repeat:no-repeat;
+  background-position: center center;
+  z-index: 39;
+  opacity: 0;
+}
+  #player1team {
+    z-index: 1;
+    width: 328px;
+    height: 40px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    overflow: hidden;
+  }
+  #player2team {
+    z-index: 2;
+    width: 328px;
+    height: 40px;
+    right: 0px;
+    top: 0px;
+    position: absolute;
+    overflow: hidden;
+  }
+
+  #p1teamspan{
+     text-align: center;
+     font-size:30px;
+     left: -368px;
+     text-transform: uppercase;
+     position: absolute;
+     overflow: hidden;
+
+  }
+  #p2teamspan{
+     text-align: center;
+     right: -368px;
+     font-size:30px;
+     text-transform: uppercase;
+     position: absolute;
+     overflow: hidden;
+
+  }
+#p2team{
+  bottom: 0px;
+}
+#p1team{
+bottom: 0px;
+}
+  .name3{
+     font-size:30px;
+     opacity: 1;
+     top: 0px;
+     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+     z-index: 15;
+     vertical-align: middle;
+     line-height: 40px;
+     position: sticky;
+     white-space: nowrap;
+  }
+.teamspan{
+width: 328px;
+height: 40px;
+overflow: hidden;
+}
+#crewdiv{
+
+  text-transform: uppercase;
+}
+#t1gf{
+left: 440px;
+top: 0px;
+position: absolute;
+line-height: 40px;
+text-align: center;
+vertical-align: middle;
+opacity: 0;
+width: 40px;
+font-size: 30px;
+text-shadow: 0 0 0.1em black, 0 0 0.2em black;
+
+}
+#t2gf{
+right: 440px;
+width: 40px;
+top: 0px;
+position: absolute;
+line-height: 40px;
+text-align: center;
+vertical-align: middle;
+opacity: 0;
+font-size: 30px;
+text-shadow: 0 0 0.1em black, 0 0 0.2em black;
+
+}
