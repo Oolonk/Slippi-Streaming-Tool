@@ -7,14 +7,11 @@ Now The program send the live data from the Wii to the 42070 Websocket Port of y
 If you want the Stats from the Set shown you can enter the folder Path of your Replays in the program. When you make a Websocket Request with the event: getStats with the number of games you want to show.
 
 ## Example
-[UI](/example/ui%2016.9/)
+[UI](/example/ui%2016.9/)<br>
 [Stats](/example/stats/)
 
 ## My Social Media Accounts:
-[Twitter](https://twitter.com/RDF_Dortimus51)
-
-[BerlinSmash Twitter](https://twitter.com/berlin_smash)
-
-[BerlinSmash Twitch](https://twitch.tv/berlinsmash)
-
+[Twitter](https://twitter.com/RDF_Dortimus51)<br>
+[BerlinSmash Twitter](https://twitter.com/berlin_smash)<br>
+[BerlinSmash Twitch](https://twitch.tv/berlinsmash)<br>
 [Support me or the BerlinSmash Community on PayPal](https://www.paypal.com/donate/?hosted_button_id=4QEHK2EBPMGDY)
