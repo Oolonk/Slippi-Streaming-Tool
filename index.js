@@ -425,10 +425,11 @@ return stats;
    overlayData.gameEnd = null;
    overlayData.lras = null;
    overlayData.frame = stream.parser.frames[stream.parser.latestFrameIndex];
-   overlayData.combo = realtime.combo.combos;
+   overlayData.combo = realtime.combo.comboComputer.combos;
    //fs.writeFileSync('realtime.json', util.inspect(stream.parser));
    // fs.writeFileSync('json/overlay.json', util.inspect(overlayData));
    sendUpdateOverlay(overlayData);
+   console.log(overlayData);
  });
  realtime.game.end$.subscribe((payload) => {
 
@@ -440,7 +441,7 @@ return stats;
      overlayData.latestFrameIndex = stream.parser.latestFrameIndex;
      overlayData.options = stream.parser.options;
      overlayData.frame = stream.parser.frames[stream.parser.latestFrameIndex];
-     overlayData.combo = realtime.combo.combos;
+     overlayData.combo = realtime.combo.comboComputer.combos;
      overlayData.gameEnd = payload.gameEndMethod;
      overlayData.lras = payload.winnerPlayerIndex;
      //fs.writeFileSync('realtime.json', util.inspect(stream.parser));
