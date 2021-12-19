@@ -412,6 +412,7 @@ return stats;
    "frame": undefined ,
    "gameEnd": undefined ,
    "lras": undefined,
+   "combo": undefined
  };
  watch(stream.parser, 'lastFinalizedFrame', function(){
 
