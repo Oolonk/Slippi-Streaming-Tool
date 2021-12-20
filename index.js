@@ -437,7 +437,6 @@ return stats;
    overlayData.lras = null;
    overlayData.frame = stream.parser.frames[stream.parser.latestFrameIndex];
    overlayData.combo = realtime.combo.comboComputer.combos;
-   fs.writeFileSync('realtime.json', util.inspect(stream._events.json()));
    // fs.writeFileSync('json/overlay.json', util.inspect(overlayData));
    sendUpdateOverlay(overlayData);
  });
