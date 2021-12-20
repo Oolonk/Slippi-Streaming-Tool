@@ -210,7 +210,7 @@ for (var x = 1; x < 5; x++) {
 }
 
 //Combo function
-  var combos = slippi2.combo.filter(combo => combo.playerIndex == slippi2.settings.players[i].playerIndex && (combo.endFrame == null || combo.endFrame >= (slippi2.lastFinalizedFrame - 180)));
+  var combos = slippi2.combo.filter(combo => combo.moves.at(-1).playerIndex == slippi2.settings.players[i].playerIndex && (combo.endFrame == null || combo.endFrame >= (slippi2.lastFinalizedFrame - 180)));
   var hitcount = combos.filter(combo => combo.moves.sum("hitCount") >= 3);
   if (hitcount.length != 0) {
     if (hitcount[hitcount.length - 1].moves.sum("hitCount") > 999)
