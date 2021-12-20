@@ -8,8 +8,14 @@
     <script type="text/javascript" src="js.js">
     </script>
   </head>
-  <body style="background-color: rgba(0, 0, 0, 0);color: white; margin: 0">
-  <center>
+  <script type="text/javascript">
+  </script>
+  <body style="margin: 0" onload="ping23();">
+    <div id="color">
+
+    <div id="background">
+      <div style="overflow-y: auto; height: 100%;">
+        <center>
     <span id="WiiSpan">
       Wii Relay
       <input type="number" name="relayPort" id="relayPort" min="0" max="65535" onchange="relaying(this.value)">
@@ -21,16 +27,21 @@
         </th>
         </tr>
       </table>
-  <div style="width: 50%">
-  </div>
-    Folder Path <button onclick="opendialog()">Change Folder</button><input type="file" id="saas" name="saas" webkitdirectory onchange="folder(this.files[0].path)" style="display: none;"/>
+    Folder Path <button onclick="opendialog()"><span>Change Folder</span></button><input type="file" id="saas" name="saas" webkitdirectory onchange="folder(this.files[0].path)" style="display: none;"/>
   <input type="text" name="" value="" id="folder" onchange="folder(this.value)"><br/>
       <input type="checkbox" name="" onclick="autohider(this.checked);" id="autohide">
-      <span style="color: white;">Autohide</span><br/>
+      <label for="autohide">Autohide</label><br/>
       <input type="checkbox" name="" onclick="autostarting(this.checked);" id="autostart">
-      <span style="color: white;">Autostart Program</span><br/>
-      <button type="button" name="button" id="startbutton" onclick="start()" style="display: block;">Start Monitoring</button><button type="button" name="button" id="stopbutton" onclick="stop()" style="display: none;">Stop Monitoring</button><br/>
-      <span style="color: white;" id="connection"></span>
-  </center>
+      <label for="autostart">Autostart Program</label><br/>
+      <button type="button" name="button" id="startbutton" onclick="start()" style="display: block;"><span>Start Monitoring</span></button><button type="button" name="button" id="stopbutton" onclick="stop()" style="display: none;"><span>Stop Monitoring</span></button><br/>
+      <span id="connection"></span>
+</center>
+  </div>
+</div>
+  <div id="bottom">
+
+    <center><div id="versiondiv" onclick="openRelease();"><span id="versionspan">Test</span></div></center>
+  </div>
+</div>
   </body>
 </html>

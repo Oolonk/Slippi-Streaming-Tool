@@ -1,5 +1,6 @@
 
 var ipc = require('electron').ipcRenderer;
+var ipc2 = require('electron').ipcMain;
 var fs = require('fs');
 var path = require('path')
 const remote = require('@electron/remote');
@@ -132,3 +133,20 @@ setInterval(function(){
   }
 
 }, 1000)
+
+document.getElementById('reset-to-system').addEventListener('click', async () => {
+  await window.darkMode.system()
+  document.getElementById('theme-source').innerHTML = 'System'
+})
+var versionApp;
+function ping23(){
+versionApp = ipc.sendSync('ping', 'value');
+document.getElementById("versionspan").textContent= "Version: " + versionApp;
+}
+function openRelease(){
+  require('electron').shell.openExternal('https://github.com/Oolonk/Slippi-Streaming-Tool/releases/tag/v' + versionApp);
+}
+mainWindow.webContents.on('new-window', function(e, url) {
+  e.preventDefault();
+  require('electron').shell.openExternal(url);
+});

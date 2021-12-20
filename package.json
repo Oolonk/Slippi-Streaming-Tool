@@ -1,6 +1,6 @@
 {
   "name": "SlippiStreamTool",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Slippi relay for Stream",
   "license": "MIT",
   "author": "Oolonk",
@@ -51,6 +51,7 @@
     "find-process": "^1.4.4",
     "fs": "^0.0.1-security",
     "object-watcher": "^1.0.2",
+    "pjson": "^1.0.9",
     "rxjs": "^7.4.0",
     "ws": "^7.5.3"
   },

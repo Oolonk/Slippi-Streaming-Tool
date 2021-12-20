@@ -25,19 +25,18 @@ if (process.platform === "win32") {
 
 }
 if (require('electron-squirrel-startup')) return;
-app.disableHardwareAcceleration()
 function createWindow() {
     win = new BrowserWindow({
-      backgroundColor: '#2e2c29',
       width: 1200,
+      minWidth:510,
       height: 700,
+      minHeight: 200,
       icon:   path.normalize(__dirname + '/script/icon.' + ending),
       frame: true,
-      resizable : false,
+      resizable : true,
       webPreferences: {
         nodeIntegration: true,
         enableRemoteModule: true,
-        backgroundThrottling: false,
         contextIsolation: false,
         devTools: false
       }})
@@ -89,6 +88,18 @@ require("@electron/remote/main").enable(win.webContents)
               win.hide()
           }
         });
+        ipc.handle('dark-mode:toggle', () => {
+            if (nativeTheme.shouldUseDarkColors) {
+              nativeTheme.themeSource = 'light'
+            } else {
+              nativeTheme.themeSource = 'dark'
+            }
+            return nativeTheme.shouldUseDarkColors
+          })
+
+          ipc.handle('dark-mode:system', () => {
+            nativeTheme.themeSource = 'system'
+          })
 
             appIcon.setContextMenu(contextMenu);
 }
@@ -97,13 +108,14 @@ app.commandLine.appendSwitch("disable-gpu")
 app.commandLine.appendSwitch("disable-software-rasterizer");
 app.commandLine.appendSwitch("disable-renderer-backgrounding");
 app.commandLine.appendSwitch("disable-raf-throttling");
-app.on('ready', createWindow)
-/*
-setTimeout(function() {
+app.on('ready', () => {
+  createWindow();
+});
+
+/*setTimeout(function() {
   win.webContents.openDevTools();
   console.log("test")
-  }, 3000);
-*/
+}, 3000);
   /*
 This example script connects to a relay, automatically detects combos,
 and generates a Dolphin-compatible `combos.json` file when disconnected
@@ -124,7 +136,6 @@ var slpLiveFolderPath = path.normalize(app.getPath('userData'));
 
 
 const stream = new SlpLiveStream("console");
-
 
 
 const wss = new WebSocket.Server({ port: 42069 });
@@ -426,10 +437,9 @@ return stats;
    overlayData.lras = null;
    overlayData.frame = stream.parser.frames[stream.parser.latestFrameIndex];
    overlayData.combo = realtime.combo.comboComputer.combos;
-   //fs.writeFileSync('realtime.json', util.inspect(stream.parser));
+   fs.writeFileSync('realtime.json', util.inspect(stream._events.json()));
    // fs.writeFileSync('json/overlay.json', util.inspect(overlayData));
    sendUpdateOverlay(overlayData);
-   console.log(overlayData);
  });
  realtime.game.end$.subscribe((payload) => {
 
@@ -486,3 +496,12 @@ dialog.showErrorBox = function(title, content) {
     console.log(`${title}\n${content}`);
 };
 */
+
+ipc.on('ping', (event, arg) => {
+  console.log(arg) // prints "ping"
+
+  var pjson = require('./package.json');
+  var pjson2 = pjson.version;
+  console.log(typeof pjson2);
+    event.returnValue = pjson2;
+})
