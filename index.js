@@ -18,13 +18,15 @@ var appIcon;
 var contextMenu;
 var lollol = false;
 var ending;
+var playerbackup = [];
+
 if (process.platform === "win32") {
   ending = "ico"
 }else {
   ending = "png"
 
 }
-if (require('electron-squirrel-startup')) return;
+if (require('electron-squirrel-startup'));
 function createWindow() {
     win = new BrowserWindow({
       width: 1200,
@@ -179,6 +181,7 @@ const sendUpdate = (data) => {
 
 // Add the combos to the queue whenever we detect them
 const realtime = new SlpRealTime();
+/*
 realtime.game.start$.subscribe((payload) => {
   console.log(payload)
   isTeams = payload.isTeams;
@@ -339,6 +342,7 @@ realtime.stock.playerDied$.subscribe((payload) => {
 //     }
 //   }
 // });
+*/
 ipc.on('start', (event, lolistgut) => {
   lellel = lolistgut;
   slpLiveFolderPath = lolistgut[2];
@@ -438,8 +442,20 @@ return stats;
    overlayData.frame = stream.parser.frames[stream.parser.latestFrameIndex];
    overlayData.combo = realtime.combo.comboComputer.combos;
    // fs.writeFileSync('json/overlay.json', util.inspect(overlayData));
+   for(var i = 0; i < 4; i++){
+     if(stream.parser.frames[stream.parser.latestFrameIndex]){
+     if(stream.parser.frames[stream.parser.latestFrameIndex].players[i]){
+      playerbackup[i] = stream.parser.frames[stream.parser.latestFrameIndex].players[i];
+      //console.log("Normal wurde genommen");
+     }else{
+      overlayData.frame.players[i] = playerbackup[i];
+      console.log("Backup wurde genommen");
+     }
+   }
+  }
    sendUpdateOverlay(overlayData);
  });
+ /*
  realtime.game.end$.subscribe((payload) => {
 
 
@@ -459,7 +475,7 @@ return stats;
      sendUpdateOverlay(overlayData);
    });
 
-
+*/
 
  // Variable Changed!
  const ws2 = new WebSocket.Server({ port: 42070 });
