@@ -150,3 +150,10 @@ mainWindow.webContents.on('new-window', function(e, url) {
   e.preventDefault();
   require('electron').shell.openExternal(url);
 });
+ipcRenderer.on('stop', function (event, message) {
+  if(message == "stop"){
+    lollol = false;
+    document.getElementById('startbutton').style.display = 'block';
+    document.getElementById('stopbutton').style.display = 'none';
+  }
+});

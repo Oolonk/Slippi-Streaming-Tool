@@ -3,6 +3,7 @@ require('@electron/remote/main').initialize()
 const electron = require('electron')
 const { BrowserWindow } = require('electron')
 var ipc = require('electron').ipcMain;
+const notifier = require('node-notifier');
 var url = require('url')
 const util = require('util')
 const { SlippiGame, Ports, DolphinConnection, ConnectionStatus} = require('@slippi/slippi-js')
@@ -19,6 +20,7 @@ var contextMenu;
 var lollol = false;
 var ending;
 var playerbackup = [];
+
 
 if (process.platform === "win32") {
   ending = "ico"
@@ -128,13 +130,13 @@ var rightcolor;
 var start = false;
 
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+//eslint-disable-next-line @typescript-eslint/no-var-requires
 const { SlpFolderStream, SlpLiveStream, Slpstream, SlpRealTime } = require("@vinceau/slp-realtime");
 
-// TODO: Make sure you set this value!
+//TODO: Make sure you set this value!
 var slpLiveFolderPath = path.normalize(app.getPath('userData'));
-// TODO: Make sure you set these values!
-// Connect to the relay
+//TODO: Make sure you set these values!
+//Connect to the relay
 
 
 const stream = new SlpLiveStream("console");
@@ -172,14 +174,14 @@ wss.on("connection", (client) => {
 });
 const sendUpdate = (data) => {
   wss.clients.forEach((client) => {
-    // const data = `hello world ${counter}!`;
+    //const data = `hello world ${counter}!`;
     if (client !== wss && client.readyState === WebSocket.OPEN) {
       client.send(data);
     }
   });
 };
 
-// Add the combos to the queue whenever we detect them
+//Add the combos to the queue whenever we detect them
 const realtime = new SlpRealTime();
 /*
 realtime.game.start$.subscribe((payload) => {
@@ -330,42 +332,42 @@ realtime.stock.playerDied$.subscribe((payload) => {
   })
 );
 });
-// You can do the same subscription above without using RxJS.
-// Doing so would make the subcription look something like this:
+//You can do the same subscription above without using RxJS.
+//Doing so would make the subcription look something like this:
 
-// realtime.combo.end$.subscribe(payload => {
-//   if (comboFilter.isCombo(payload.combo, payload.settings)) {
-//     console.log("Detected combo!");
-//     const filename = stream.getCurrentFilename();
-//     if (filename) {
-//       comboQueue.push({path: filename, combo: payload.combo});
-//     }
-//   }
-// });
+//realtime.combo.end$.subscribe(payload => {
+//  if (comboFilter.isCombo(payload.combo, payload.settings)) {
+//    console.log("Detected combo!");
+//    const filename = stream.getCurrentFilename();
+//    if (filename) {
+//      comboQueue.push({path: filename, combo: payload.combo});
+//    }
+//  }
+//});
 */
+
+
+
 ipc.on('start', (event, lolistgut) => {
   lellel = lolistgut;
   slpLiveFolderPath = lolistgut[2];
   lollol = true;
   realtime.setStream(stream);
     stream.start("localhost", lolistgut[1])
-      .then(() => {
-        console.log("Successfully connected!");
-      })
+      .catch(console.error);
 
 })
 ipc.on('folder', (event, value) => {
   slpLiveFolderPath = value;
 })
 
-
 stream.connection.on("statusChange", (status) => {
   if (status === ConnectionStatus.DISCONNECTED) {
     console.log("Disconnected to " + lellel[1]);
-      if (lollol) {
-        stream.start("localhost", lellel[1])
-          .then(() => {
-          })
+    if (lollol) {
+      stream.restart();
+      notification("Slippi Stream Tool", "Trying to reconnect", "Trying to reconnect");
+    
 }
 
 sendUpdate(
@@ -375,10 +377,16 @@ sendUpdate(
   })
   );
 }
+if(status === ConnectionStatus.CONNECTED){
+  notification("Slippi Stream Tool", "Connected to the relay", "Connected to the relay");
+  console.log(ConnectionStatus);
+}
 });
+
+
 ipc.on('stop', (event, arg) => {
 lollol = false;
-        // ipc.send('connection', 'Not Connected');
+        //ipc.send('connection', 'Not Connected');
 })
 
 //Rest API
@@ -430,18 +438,18 @@ return stats;
    "combo": undefined
  };
  watch(stream.parser, 'lastFinalizedFrame', function(){
-
+ //fs.writeFileSync('json/realtime.combo.json', util.inspect(realtime.combo.comboComputer, {depth: Infinity}));
+  overlayData.combo = realtime.combo.comboComputer.combos;
    overlayData.settings = stream.parser.settings;
    overlayData.options = stream.parser.options;
    overlayData.lastFinalizedFrame = stream.parser.lastFinalizedFrame;
    overlayData.settingsComplete = stream.parser.settingsComplete;
    overlayData.latestFrameIndex = stream.parser.latestFrameIndex;
-   overlayData.options = stream.parser.options;
    overlayData.gameEnd = null;
    overlayData.lras = null;
    overlayData.frame = stream.parser.frames[stream.parser.latestFrameIndex];
    overlayData.combo = realtime.combo.comboComputer.combos;
-   // fs.writeFileSync('json/overlay.json', util.inspect(overlayData));
+   //fs.writeFileSync('json/overlay.json', util.inspect(stream.parser.frames[stream.parser.latestFrameIndex]));
    for(var i = 0; i < 4; i++){
      if(stream.parser.frames[stream.parser.latestFrameIndex]){
      if(stream.parser.frames[stream.parser.latestFrameIndex].players[i]){
@@ -449,13 +457,11 @@ return stats;
       //console.log("Normal wurde genommen");
      }else{
       overlayData.frame.players[i] = playerbackup[i];
-      console.log("Backup wurde genommen");
      }
    }
   }
    sendUpdateOverlay(overlayData);
  });
- /*
  realtime.game.end$.subscribe((payload) => {
 
 
@@ -470,14 +476,12 @@ return stats;
      overlayData.gameEnd = payload.gameEndMethod;
      overlayData.lras = payload.winnerPlayerIndex;
      //fs.writeFileSync('realtime.json', util.inspect(stream.parser));
-     // fs.writeFileSync('json/game/overlay.json', util.inspect(overlayData));
+     //fs.writeFileSync('json/game/overlay.json', util.inspect(overlayData));
 
      sendUpdateOverlay(overlayData);
    });
 
-*/
-
- // Variable Changed!
+ //Variable Changed!
  const ws2 = new WebSocket.Server({ port: 42070 });
  ws2.on("connection", (client) => {
    console.log("Overlay client connected!");
@@ -487,7 +491,7 @@ return stats;
 
  const sendUpdateOverlay = (data) => {
    ws2.clients.forEach((client) => {
-     // const data = `hello world ${counter}!`;
+     //const data = `hello world ${counter}!`;
      if (client !== wss && client.readyState === WebSocket.OPEN) {
        client.send(
          JSON.stringify({
@@ -513,10 +517,25 @@ dialog.showErrorBox = function(title, content) {
 */
 
 ipc.on('ping', (event, arg) => {
-  console.log(arg) // prints "ping"
+  console.log(arg) //prints "ping"
 
   var pjson = require('./package.json');
   var pjson2 = pjson.version;
   console.log(typeof pjson2);
     event.returnValue = pjson2;
 })
+
+//Notifier function
+function notification(title, subtitle, message){
+  notifier.notify({
+    'title': title,
+    'subtitle': subtitle,
+    'message': message,
+    'icon': 'script/icon.png',
+    'sound': false,
+    'wait': true
+  });
+  notifier.on('click', function (notifierObject, options, event) {
+    win.show()
+  });
+}
