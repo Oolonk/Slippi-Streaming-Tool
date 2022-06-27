@@ -1,5 +1,5 @@
 {
-  "name": "SlippiStreamTool",
+  "name": "slippistreamtool",
   "version": "1.1.1",
   "description": "Slippi relay for Stream",
   "license": "MIT",
@@ -21,8 +21,19 @@
   "build": {
     "appId": "de.oolonk.slippi.stream",
     "productName": "Slippi Stream Tool",
-    "target": "AppImage",
     "icon": "script/icon.png",
+    "linux": {
+      "target":[
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
+      "category": "Office"
+    },
     "nsis": {
       "allowToChangeInstallationDirectory": true,
       "oneClick": false
@@ -30,13 +41,10 @@
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.61",
-    "@electron-forge/maker-deb": "^6.0.0-beta.61",
-    "@electron-forge/maker-rpm": "^6.0.0-beta.61",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.61",
     "@electron-forge/maker-zip": "^6.0.0-beta.61",
     "electron": "^15.3.0",
-    "electron-builder": "^22.14.5",
-    "electron-forge-maker-appimage": "^22.14.7"
+    "electron-builder": "^22.14.5"
   },
   "dependencies": {
     "@electron/remote": "^2.0.1",
@@ -67,20 +75,6 @@
             "title": "Slippi Stream Tool",
             "author": "Jonas Hartmer"
           }
-        },
-        {
-          "name": "@electron-forge/maker-zip",
-          "platforms": [
-            "darwin"
-          ]
-        },
-        {
-          "name": "@electron-forge/maker-deb",
-          "config": {}
-        },
-        {
-          "name": "@electron-forge/maker-rpm",
-          "config": {}
         }
       ]
     }
